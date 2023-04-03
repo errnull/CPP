@@ -1,17 +1,9 @@
 #include <iostream>
 using namespace std;
 
-void swapInt(int &a, int &b)
-{
-    if (&a != &b)
-    {
-        a ^= b;
-        b ^= a;
-        a ^= b;
-    }
-}
+template<typename T>
 
-void selectionSort(int arr[], int n)
+void selectionSort(T arr[], int n)
 {
     for (int i = 0; i < n; i++)
     {
@@ -24,7 +16,7 @@ void selectionSort(int arr[], int n)
                 minIndex = j;
             }
         }
-        swapInt(arr[i], arr[minIndex]);
+        swap(arr[i], arr[minIndex]);
     }
 }
 
