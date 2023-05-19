@@ -8,37 +8,6 @@ struct ListNode {
     ListNode(int x) : val(x), next(NULL) {}
 };
 
-class Solution {
-public:
-    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
-        // 虚拟头节点
-        ListNode *dummy = new ListNode(-1), *p = dummy;
-        ListNode *p1 = l1, *p2 = l2;
-
-        while (p1 != NULL && p2 != NULL) {
-            // 比较 p1 和 p2 两个指针
-            // 将值较小的节点连接到 p 指针
-            if (p1->val > p2->val) {
-                p->next = p2;
-            } else {
-                p->next = p1;
-                p1 = p1->next;
-            }
-            // p 指针不断前进
-            p = p->next;
-        }
-
-        if (p1 != NULL) {
-            p->next = p1;
-        }
-        if (p2 != NULL) {
-            p->next = p2;
-        }
-
-        return dummy->next;
-    }
-};
-
 // 测试代码
 void printList(ListNode* head) {
     while (head) {
@@ -47,6 +16,38 @@ void printList(ListNode* head) {
     }
     cout << endl;
 }
+
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        // 虚拟头节点
+        ListNode *dummy = new ListNode(-1), *p = dummy;
+        ListNode *p1 = l1, *p2 = l2;
+
+        while (p1 != NULL && p2 != NULL) {
+            // 比较 p1 和 p2 
+            // 将较小的节点连接到 p 指针
+            if (p1->val > p2->val) {
+                p->next = p2;
+                p2 = p2->next;
+            } else {
+                p->next = p1;
+                p1 = p1->next;
+            }
+            // p 指针不断前进
+            p = p->next;
+
+            if (p1 != NULL) {
+                p->next = p1;
+            }
+            if(p2 != NULL) {
+                p->next = p2;
+            }
+        }
+        
+        return dummy->next;
+    }
+};
 
 int main() {
     Solution solution;
